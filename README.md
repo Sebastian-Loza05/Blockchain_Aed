@@ -5,3 +5,10 @@ Proyecto de Algoritmos y Estructura de Datos  - Blockchain
 - Diana Ñañez Andrés
 - Jaime Ramos Talla
 - Carlos Flores Godo
+
+## Libreria Grafica:
+Usaremos wxWidgets
+Para desccargarlo ingresar al siguiente link:
+https://www.wxwidgets.org/downloads/
+
+
