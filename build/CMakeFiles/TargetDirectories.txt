@@ -1,3 +1,0 @@
-/home/sebastian/OneDrive/Documentos/Universidad/Ciclo_5/Aed/Blockchain_Aed/build/CMakeFiles/Blockchain_Aed.dir
-/home/sebastian/OneDrive/Documentos/Universidad/Ciclo_5/Aed/Blockchain_Aed/build/CMakeFiles/edit_cache.dir
-/home/sebastian/OneDrive/Documentos/Universidad/Ciclo_5/Aed/Blockchain_Aed/build/CMakeFiles/rebuild_cache.dir
