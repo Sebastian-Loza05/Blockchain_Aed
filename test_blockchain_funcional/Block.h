@@ -35,9 +35,7 @@ public:
         anterior = "0000000000000000000000000000000000000000000000000000000000000000";
     }
 
-    Block(int num, string anterior, CircularArray<tst_Registro> array): nro(num), anterior(anterior), array(array){
-
-    }
+    Block(int num, string anterior, CircularArray<tst_Registro> array, string pow): nro(num), anterior(anterior), array(array), pow(pow){}
 
     const string &getPow() const {
         return pow;
@@ -59,7 +57,7 @@ public:
       return valido;
     }
 
-    const CircularArray<tst_Registro> &getArray() const {
+    CircularArray<tst_Registro> &getArray() {
         return array;
     }
 
@@ -91,6 +89,23 @@ public:
       valido = true;
       base = get_string();
       cout<<"hash: "<<hash<<endl;
+    }
+
+    void mostrar(){
+      cout<<"#: "<<nro<<endl;
+      cout<<"Nonce: "<<nonce<<endl;
+      for(auto i = 0; i < array.size(); i++){
+        cout<<"{";
+        cout<< array[i].emisor + ", ";
+        cout<< array[i].receptor + ", ";
+        cout<< to_string(array[i].monto) + ", ";
+        cout<< to_string(array[i].dia) + "/";
+        cout<< to_string(array[i].mes) + "/";
+        cout<< to_string(array[i].ahnio);
+        cout<< "}, ";
+      }
+      cout<< "Anterior: "<< anterior <<endl;
+      cout<<"Hash: "<< hash<<endl;
     }
 
     string get_string(){

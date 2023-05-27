@@ -15,13 +15,15 @@ private:
     Heap<string, float> montos_e;
 
 public:
+    Blockchain(){}
+    Blockchain(string pow):pow(pow){}
     void add_block(CircularArray<tst_Registro> array){
         ++last_num;
         Block nuevo;
         if(blockchain.is_empty()){
             nuevo = Block(array);
         } else{
-            nuevo = Block(last_num, blockchain.back().getHash(), array);
+            nuevo = Block(last_num, blockchain.back().getHash(), array, pow);
         }
         nuevo.setHash(sha256(nuevo.get_string()));
         nuevo.minar();
@@ -55,6 +57,22 @@ public:
 
     void ingresar_registro(tst_Registro registro){
       Block actual = blockchain.back();
+      string nombre = "";
+      float monto = 0.0;
+      int bloque = 0;
+      nombre = registro.get_emisor();
+      monto = registro.get_monto();
+      if(actual.getArray().is_full()){
+        CircularArray<tst_Registro> array(5);
+        array.push_back(registro);
+        add_block(array);
+      }
+      else{
+        actual.getArray().push_back(registro);
+      }
+      bloque = last_num;
+      emisores.insert(nombre, bloque);
+      montos_e.push(monto,nombre);
     }
 
     Block getBlock(int index) {
@@ -67,6 +85,13 @@ public:
 
     int getBlockCount() {
         return blockchain.size();
+    }
+
+    void mostrar(){
+      for (int i = 0; i < last_num+1; i++) {
+        blockchain[i].mostrar();
+        cout<<endl;
+      }
     }
 
     void display_hash_map(){
