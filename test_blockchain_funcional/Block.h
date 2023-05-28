@@ -16,7 +16,7 @@ private:
     int nonce = 0;
     string anterior;
     string hash;
-    string pow = "00";
+    string pow;
     CircularArray<tst_Registro> array;
     string base;
     bool valido = false;
@@ -26,12 +26,14 @@ public:
     // Testeo: borrar al final
     Block() {
         nro = 1;
+        pow = "00";
         CircularArray<tst_Registro> tmp_array(5);
         array = tmp_array;
     }
 
-    Block(CircularArray<tst_Registro> array): array(array) {
+    Block(CircularArray<tst_Registro> array,  string pow): array(array), pow(pow) {
         nro = 1;
+        pow = "00";
         anterior = "0000000000000000000000000000000000000000000000000000000000000000";
     }
 

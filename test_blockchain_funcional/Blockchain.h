@@ -11,18 +11,20 @@ class Blockchain {
 private:
     int last_num = 0;
     DoubleList<Block> blockchain;
-    string pow = "00";
+    string pow;
     ChainHash<string, int> emisores;
     Heap<string, float> montos_e;
 
 public:
-    Blockchain(){}
+    Blockchain(){
+      pow = "00";
+    }
     Blockchain(string pow):pow(pow){}
     void add_block(CircularArray<tst_Registro> array){
         ++last_num;
         Block nuevo;
         if(blockchain.is_empty()){
-            nuevo = Block(array);
+            nuevo = Block(array, pow);
         } else{
             nuevo = Block(last_num, blockchain.back().getHash(), array, pow);
         }

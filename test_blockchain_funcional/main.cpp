@@ -121,7 +121,7 @@ void menu(int &opcion, Blockchain* blockchain){
 
 int main (int argc, char *argv[])
 {
-  Blockchain* bitcoin = new Blockchain("000");
+  Blockchain* bitcoin = new Blockchain("00000");
   cout<<"---------------------------------------------"<<endl;
   cout<<"Bienvenido a Blockchain"<<endl;
   int opcion = 0;
