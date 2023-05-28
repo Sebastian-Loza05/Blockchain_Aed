@@ -16,6 +16,8 @@ public:
             emisor), receptor(receptor), monto(monto), dia(dia), mes(mes), ahnio(ahnio) {}
 
     tst_Registro() : monto(0), dia(0), mes(0), ahnio(0) {}
+    string get_emisor(){return emisor;}
+    string get_receptor(){return receptor;}
 
 };
 
