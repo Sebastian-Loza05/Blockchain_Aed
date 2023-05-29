@@ -3,6 +3,7 @@
 #include "Block.h"
 #include "ForwardList.h"
 #include "hash_maps.h"
+#include "heap_index.h"
 
 
 class Blockchain {
@@ -11,6 +12,7 @@ private:
     DoubleList<Block> blockchain;
     string pow = "00";
     ChainHash<string, int> emisores;
+    Heap<string, float> montos_e;
 
 public:
     void add_block(CircularArray<tst_Registro> array){
@@ -29,9 +31,11 @@ public:
     void insert_data(DoubleList<tst_Registro> list){
         CircularArray<tst_Registro> array(5);
         string nombre = "";
+        float monto = 0.0;
         int bloque = 0;
         while (!list.is_empty()){
             nombre = list.front().get_emisor();
+            monto = list.front().get_monto();
             if(array.is_full()){
                 add_block(array);
                 array.clear();
@@ -42,12 +46,13 @@ public:
             }
             bloque = last_num + 1;
             emisores.insert(nombre, bloque);
+            montos_e.push(monto,nombre);
         }
         if(!array.is_empty()){
             add_block(array);
         }
     }
-    
+
     void ingresar_registro(tst_Registro registro){
       Block actual = blockchain.back();
     }
@@ -63,7 +68,7 @@ public:
     int getBlockCount() {
         return blockchain.size();
     }
-    
+
     void display_hash_map(){
       emisores.display();
     }
@@ -72,6 +77,12 @@ public:
       cout<<emisor<<" se ha realizado transacciones en los bloques : ";
       emisores.find(emisor)->mostrar();
       cout<<endl;
+    }
+
+    void get_maxmonto(){
+        cout<<"Las personas que han realizado transacciones con el monto más alto son: "<<endl;
+        montos_e.top()->mostrar();
+        cout<<endl;
     }
 };
 
