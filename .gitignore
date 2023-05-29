@@ -34,3 +34,4 @@
 CMakeLists.txt
 build/
 sha256/
+.ccls-cache
