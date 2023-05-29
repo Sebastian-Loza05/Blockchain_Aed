@@ -81,7 +81,9 @@ public:
 
     void get_maxmonto(){
         cout<<"Las personas que han realizado transacciones con el monto más alto son: "<<endl;
-        montos_e.top()->mostrar();
+        cout<<"Monto: "<<montos_e.top().monto<<"  ";
+        cout<<"Emisores: ";
+        montos_e.top().keys->mostrar();
         cout<<endl;
     }
 };

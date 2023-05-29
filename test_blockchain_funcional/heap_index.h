@@ -100,9 +100,9 @@ public:
   //   return eliminado;
   // }
 
-  ForwardList<TV>* top()
+  Nodo<TK,TV> top()
   {
-    return elements[0].keys;
+    return elements[0];
   }
 
 
