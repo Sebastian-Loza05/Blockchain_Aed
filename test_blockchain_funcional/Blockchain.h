@@ -4,7 +4,6 @@
 #include "ForwardList.h"
 #include "hash_maps.h"
 
-SHA256 sha256;
 
 class Blockchain {
 private:
@@ -22,17 +21,8 @@ public:
         } else{
             nuevo = Block(last_num, blockchain.back().getHash(), array);
         }
-        sha256(nuevo.get_string());
-        cout << nuevo.getNonce() << endl;
-        cout << sha256.getHash() << endl;
-        //cout << tst.get_string() << endl;
-
-        while (nuevo.getHash().substr(0, pow.size()) != pow) {
-            nuevo.addNonce();
-            nuevo.setHash(sha256(nuevo.get_string()));
-            cout << nuevo.getNonce() << endl;
-            cout << nuevo.getHash() << endl;
-        }
+        nuevo.setHash(sha256(nuevo.get_string()));
+        nuevo.minar();
     }
 
     void insert_data(DoubleList<tst_Registro> list){
@@ -55,6 +45,11 @@ public:
         if(!array.is_empty()){
             add_block(array);
         }
+    }
+    
+    void ingresar_registro(tst_Registro registro){
+      Block actual = blockchain.back();
+      
     }
 
     Block getBlock(int index) {

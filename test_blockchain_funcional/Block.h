@@ -6,6 +6,8 @@
 // #include "C:\Users\HP\Desktop\sha256\sha256.h"
 #include "../sha256/sha256.h"
 
+SHA256 sha256;
+
 using namespace std;
 
 class Block {
@@ -14,8 +16,10 @@ private:
     int nonce = 0;
     string anterior;
     string hash;
-    string pow = "0000";
+    string pow = "00";
     CircularArray<tst_Registro> array;
+    string base;
+    bool valido = false;
 
 
 public:
@@ -51,11 +55,16 @@ public:
         return anterior;
     }
 
+    bool getValido(){
+      return valido;
+    }
+
     const CircularArray<tst_Registro> &getArray() const {
         return array;
     }
 
     void setHash(const string &hash) {
+        base = get_string();
         Block::hash = hash;
     }
 
@@ -65,6 +74,24 @@ public:
 
     void addNonce() {
         ++nonce;
+    }
+
+    void verificar(){
+      if(get_string() != base){
+        valido = false;
+        hash = sha256(get_string());
+      }
+
+    }
+
+    void minar(){
+      while(hash.substr(0, pow.length()) != pow){
+        addNonce();
+        hash = sha256(get_string());
+      }
+      valido = true;
+      base = get_string();
+      cout<<"hash: "<<hash<<endl;
     }
 
     string get_string(){
