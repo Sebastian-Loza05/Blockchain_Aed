@@ -1,6 +1,7 @@
 #ifndef UNTITLED_BLOCKCHAIN_H
 #define UNTITLED_BLOCKCHAIN_H
 #include "Block.h"
+#include "C_array.h"
 #include "ForwardList.h"
 #include "hash_maps.h"
 #include "heap_index.h"
@@ -81,7 +82,11 @@ public:
       montos_e.push(monto,nombre);
     }
 
-    Block getBlock(int index) {
+    void modificar(){
+      //Se hace invalida el bloque, se hace la invalidacion en cascada.
+    }
+
+    Block& getBlock(int index) {
         if (index >= 0 && index < blockchain.size()) {
             return blockchain[index];
         } else {
@@ -91,6 +96,10 @@ public:
 
     int getBlockCount() {
         return blockchain.size();
+    }
+    
+    DoubleList<Block>& getBlockchain(){
+      return blockchain;
     }
 
     void mostrar(){
@@ -109,12 +118,18 @@ public:
     }
 
     void search_emisor(string emisor){
-      cout<<emisor<<" se ha realizado transacciones en los bloques : ";
-      emisores.find(emisor)->mostrar();
-      cout<<endl;
+      try{
+        cout<<emisor<<" ha realizado transacciones en los bloques : ";
+        emisores.find(emisor)->mostrar();
+        cout<<endl;
+      }
+      catch (const char* error){
+        cout<<emisor<<" no ha realizado ninguna transaccion."<<endl;
+      }
     }
 
     void get_maxmonto(){
+      
         cout<<"Las personas que han realizado transacciones con el monto más alto son: "<<endl;
         cout<<"Monto: "<<montos_e.top().monto<<"  ";
         cout<<"Emisores: ";

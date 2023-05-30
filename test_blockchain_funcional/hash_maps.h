@@ -60,7 +60,6 @@ class ChainHash
       }
       else {
         bool ingresado = false;
-        // cout<<key<<": "<<value<<endl;
         for(auto i = 0; i < tabla[index]->size(); i++){
           if(key == (*tabla[index])[i].key){
             (*tabla[index])[i].values->push_back(value);
@@ -88,7 +87,7 @@ class ChainHash
           return (*tabla[index])[i].values;
         }
       }
-      throw std::out_of_range("No existe");
+      throw ("No existe");
     }
 
     // void remove(TK key){

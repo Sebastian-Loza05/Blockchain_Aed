@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Blockchain.h"
+#include "tst_Registro.h"
 
 using namespace std;
 
-void ingresar_registro(Blockchain* blockchain){
+tst_Registro ingresar_registro(){
   string nombre;
   string receptor;
   float monto;
@@ -33,8 +34,48 @@ void ingresar_registro(Blockchain* blockchain){
     cout<<"Ingrese el anhio: ";
     cin>>anhio;
   }while (anhio>2023);
-  tst_Registro tst = tst_Registro(nombre, receptor, monto, dia, mes, anhio);
-  blockchain->ingresar_registro(tst);
+  return tst_Registro(nombre, receptor, monto, dia, mes, anhio);
+}
+
+void modificar_registro(Blockchain* blockchain){
+  auto lista = blockchain->getBlockchain();
+  int num_bloque;
+  if(!lista.is_empty()){
+    do{
+      cout<<"Ingrese el numero de bloque que quiere modificar [1"<<" - "<<lista.size()<<"]: ";
+      cin>>num_bloque;
+      cout<<endl;
+    }while(num_bloque < 1 ||  num_bloque > lista.size());
+    auto bloque = blockchain->getBlock(num_bloque-1);
+    cout<<"Este es el bloque que has escogido: "<<endl;
+    cout<<endl;
+    bloque.mostrar();
+    
+    auto array = bloque.getArray();
+    int num_array = 0;
+    do{
+      cout<<"Que registro quieres modificar? [1"<<" - "<<array.size()<<"]: ";
+      cin>>num_array;
+      cout<<endl;
+    }while(num_array < 1 ||  num_array > array.size());
+    
+    cout<<"Ingrese los datos del registro modificados: "<<endl;
+    auto tst = ingresar_registro();
+    array[num_array] = tst;
+    blockchain->modificar();
+  }
+
+}
+
+void buscar_emisor(Blockchain* blockchain){
+  string nombre;
+  do{
+    cout<<"Ingrese el nombre del emisor que desea buscar: ";
+    cin>>nombre;
+    cout<<endl;
+  }while(nombre == " ");
+  blockchain->search_emisor(nombre);
+
 }
 
 void ejecutar(int opcion, Blockchain* blockchain){
@@ -42,17 +83,19 @@ void ejecutar(int opcion, Blockchain* blockchain){
     case 1:
       blockchain->mostrar();
       break;
-    case 2:
-      ingresar_registro(blockchain);
+    case 2: {
+      auto tst = ingresar_registro();
+      blockchain->ingresar_registro(tst);
       break;
+    }
     case 3:
-
+      modificar_registro(blockchain);
       break;
     case 4:
-
+      buscar_emisor(blockchain);
       break;
     case 5:
-
+      blockchain->get_maxmonto();
       break;
     default:
       break;
