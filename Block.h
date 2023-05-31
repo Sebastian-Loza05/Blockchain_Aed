@@ -1,7 +1,7 @@
 #ifndef PROYECTO_BLOCK_H
 #define PROYECTO_BLOCK_H
 #include <iostream>
-#include "tst_Registro.h"
+#include "tst_registro.h"
 #include "C_array.h"
 // #include "C:\Users\HP\Desktop\sha256\sha256.h"
 #include "sha256/sha256.h"

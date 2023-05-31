@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Blockchain.h"
-#include "tst_Registro.h"
+// #include "tst_registro.h"
 
 using namespace std;
 
@@ -46,7 +46,7 @@ void modificar_registro(Blockchain* blockchain){
             cin>>num_bloque;
             cout<<endl;
         }while(num_bloque < 1 ||  num_bloque > lista.size());
-        auto bloque = blockchain->getBlock(num_bloque-1);
+        auto bloque = blockchain->getBlock(num_bloque);
         cout<<"Este es el bloque que has escogido: "<<endl;
         cout<<endl;
         bloque.mostrar();

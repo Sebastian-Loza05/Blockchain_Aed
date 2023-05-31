@@ -1,7 +1,7 @@
 #ifndef PROYECTO_DOUBLE_LIST_H
 #define PROYECTO_DOUBLE_LIST_H
 #include <iostream>
-#include "tst_Registro.h"
+#include "tst_registro.h"
 
 using namespace std;
 
