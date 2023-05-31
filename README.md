@@ -88,7 +88,7 @@ Por lo que al final nuestro insert en un caso promedio es de O(log(n)), pero en 
    
   
 -Tabla comparativa de Blockchain con índices vs sin índices:
-![](imagenes/Selección_004.png)
+![](imagenes/tabla.png)
 
 
 ## Conclusion:
@@ -106,6 +106,8 @@ IDB Invest (s. f.). https://www.google.com/search?q=como+funciona+un+blockchain
 
 
 ## Lista de actividades concluidas por cada integrante del grupo:
+![](imagenes/Selección_004.png)
+
 
 ## Librerías:
 
