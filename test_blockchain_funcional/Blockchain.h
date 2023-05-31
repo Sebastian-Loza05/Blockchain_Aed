@@ -91,6 +91,12 @@ public:
         for(int j = (num_bloque-1); j < blockchain.size(); j++){
             verificar_pow(j);
         }
+        for(int index = (num_bloque-1); j < blockchain.size(); j++){
+            if(index != 0) {
+                blockchain[index].minar();
+            }
+            blockchain[index].minar();
+        }
     }
 
     void actualizar_anterior(int index){
