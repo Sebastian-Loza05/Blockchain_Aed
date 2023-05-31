@@ -3,7 +3,7 @@
 #include "Block.h"
 #include "Blockchain.h"
 #include "tst_Registro.h"
-#include "ForwardList.h"
+#include "Double_list.h"
 
 using namespace std;
 

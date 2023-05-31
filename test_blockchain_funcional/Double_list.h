@@ -1,12 +1,13 @@
-#ifndef UNTITLED_FORWARDLIST_H
-#define UNTITLED_FORWARDLIST_H
+#ifndef TEST_PROYECTO_DOUBLE_LIST_H
+#define TEST_PROYECTO_DOUBLE_LIST_H
+
 #include <iostream>
 #include "tst_Registro.h"
 
 using namespace std;
 
 template<class T>
-class DoubleList{
+class Double_list{
 private:
     struct Node {
         T data;
@@ -25,10 +26,10 @@ private:
         }
 
         void killSelf(){
-          if(this != nullptr){
-            next->killSelf();
-          }
-          delete this;
+            if(this != nullptr){
+                next->killSelf();
+            }
+            delete this;
         }
     };
 
@@ -38,16 +39,16 @@ private:
     int nodes;
 
 public:
-    DoubleList() {
+    Double_list() {
         nodes = 0;
         head = nullptr;
         tail = nullptr;
     }
 
     // TODO: Fix delete
-    ~DoubleList(){
-      head->killSelf();
-    }
+    //~Double_list(){
+    //    head->killSelf();
+    //}
 
     T& front(){
         if(!is_empty()) {
@@ -166,4 +167,4 @@ public:
 };
 
 
-#endif //UNTITLED_FORWARDLIST_H
+#endif //TEST_PROYECTO_DOUBLE_LIST_H

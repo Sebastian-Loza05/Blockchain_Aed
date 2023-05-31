@@ -84,17 +84,31 @@ public:
         montos_e.push(monto,nombre);
     }
 
-    void modificar(int num_bloque, int num_reg, tst_Registro contenido){
-        cout << "nro: " << num_bloque << endl;
-        cout << "reg: " << num_reg << endl;
-        getBlock(num_bloque).getArray()[num_reg-1].emisor = contenido.emisor;
-        getBlock(num_bloque).getArray()[num_reg-1].receptor = contenido.receptor;
-        getBlock(num_bloque).getArray()[num_reg-1].monto = contenido.monto;
-        getBlock(num_bloque).getArray()[num_reg-1].dia = contenido.dia;
-        getBlock(num_bloque).getArray()[num_reg-1].mes = contenido.mes;
-        getBlock(num_bloque).getArray()[num_reg-1].ahnio = contenido.ahnio;
-        getBlock(num_bloque).setHash(sha256(getBlock(num_bloque).get_string()));
+    void modificar(int num_bloque, int num_reg){
+        for(int i = (num_bloque-1); i < blockchain.size(); i++){
+            actualizar_anterior(i);
+        }
+        for(int j = (num_bloque-1); j < blockchain.size(); j++){
+            verificar_pow(j);
+        }
     }
+
+    void actualizar_anterior(int index){
+        if(index != 0) {
+            blockchain[index].setAnterior(blockchain[index - 1].getHash());
+        }
+        blockchain[index].setHash(sha256(blockchain[index].get_string()));
+    }
+
+    void verificar_pow(int index){
+        //blockchain[index].verificar();
+        //cout << "Verificando" << endl;
+        if(blockchain[index].getHash().substr(0, pow.length()) != pow){
+            blockchain[index].setValido(false);
+            //hash = sha256(get_string());
+        }
+    }
+
 
     Block& getBlock(int index) {
         index--;
@@ -114,7 +128,7 @@ public:
     }
 
     void mostrar(){
-        if(last_num == 0)
+        if(blockchain.is_empty())
             cout<<"La blockchain esta vacia"<<endl;
         else{
             for (int i = 0; i < last_num; i++) {

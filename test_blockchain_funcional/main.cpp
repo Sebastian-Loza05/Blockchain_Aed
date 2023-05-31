@@ -39,7 +39,7 @@ tst_Registro ingresar_registro(){
 
 void modificar_registro(Blockchain* blockchain){
     auto lista = blockchain->getBlockchain();
-    int num_bloque;
+    int num_bloque = 1;
     if(!lista.is_empty()){
         do{
             cout<<"Ingrese el numero de bloque que quiere modificar [1"<<" - "<<lista.size()<<"]: ";
@@ -52,7 +52,7 @@ void modificar_registro(Blockchain* blockchain){
         bloque.mostrar();
 
         auto array = bloque.getArray();
-        int num_array = 0;
+        int num_array;
         do{
             cout<<"Que registro quieres modificar? [1"<<" - "<<array.size()<<"]: ";
             cin>>num_array;
@@ -61,8 +61,8 @@ void modificar_registro(Blockchain* blockchain){
 
         cout<<"Ingrese los datos del registro modificados: "<<endl;
         auto tst = ingresar_registro();
-        array[num_array] = tst;
-        blockchain->modificar(num_bloque, num_array, tst);
+        array[num_array-1] = tst;
+        blockchain->modificar(num_bloque, num_array);
     }
 
 }
