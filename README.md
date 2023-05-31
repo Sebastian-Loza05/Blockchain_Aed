@@ -63,11 +63,18 @@ En resumen, a través de este proyecto seguiremos experimentado la potencia y la
 IDB Invest (s. f.). https://www.google.com/search?q=como+funciona+un+blockchain&rlz=1C5CHFA_enPE823PE823&sxsrf=APwXEdeLzvfT8Hs1dNmYUJNd8NKizuBJKw:1685506631809&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj5wbjA2Z7_AhUkqZUCHejdCuUQ_AUoAnoECAEQBA&biw=1422&bih=765&dpr=1.8#imgrc=i9wLTn2vFb7pgM
 
 
+
+
 ## Lista de actividades concluidas por cada integrante del grupo:
 
-## Libreria Grafica:
-Usaremos wxWidgets
+## Librerías:
+
+-Usaremos wxWidgets
 Para desccargarlo ingresar al siguiente link:
 https://www.wxwidgets.org/downloads/
+
+-Para Hash
+Para descargar el respositorio:
+https://github.com/stbrumme/hash-library.git
 
 
