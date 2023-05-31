@@ -4,7 +4,7 @@
 #include "tst_Registro.h"
 #include "C_array.h"
 // #include "C:\Users\HP\Desktop\sha256\sha256.h"
-#include "../sha256/sha256.h"
+#include "sha256/sha256.h"
 
 SHA256 sha256;
 
@@ -56,7 +56,7 @@ public:
     }
 
     bool getValido(){
-      return valido;
+        return valido;
     }
 
     CircularArray<tst_Registro> &getArray() {
@@ -76,42 +76,54 @@ public:
         ++nonce;
     }
 
+    void setAnterior(const string &anterior) {
+        Block::anterior = anterior;
+    }
+
     void verificar(){
-      if(get_string() != base){
-        valido = false;
-        hash = sha256(get_string());
-      }
+        cout << "Verificando" << endl;
+        if(hash.substr(0, pow.length()) != pow){
+            valido = false;
+            //hash = sha256(get_string());
+        }
+        valido = true;
+    }
+
+    void setValido(bool valido) {
+        Block::valido = valido;
     }
 
     void minar(){
-      while(hash.substr(0, pow.length()) != pow){
-        addNonce();
-        hash = sha256(get_string());
-      }
-      valido = true;
-      base = get_string();
-      // cout<<"hash: "<<hash<<endl;
+        while(hash.substr(0, pow.length()) != pow){
+            addNonce();
+            hash = sha256(get_string());
+        }
+        valido = true;
+        base = get_string();
+        // cout<<"hash: "<<hash<<endl;
     }
 
     void mostrar(){
-      cout<<"#: "<<nro<<endl;
-      cout<<endl;
-      cout<<"Nonce: "<<nonce<<endl;
-      cout<<endl;
-      for(auto i = 0; i < array.size(); i++){
-        cout<<"{";
-        cout<< array[i].emisor + ", ";
-        cout<< array[i].receptor + ", ";
-        cout<< to_string(array[i].monto) + ", ";
-        cout<< to_string(array[i].dia) + "/";
-        cout<< to_string(array[i].mes) + "/";
-        cout<< to_string(array[i].ahnio);
-        cout<< "}, "<<endl;
-      }
-      cout<<endl;
-      cout<< "Anterior: "<< anterior <<endl;
-      cout<<endl;
-      cout<<"Hash: "<< hash<<endl;
+        cout<<"#: "<<nro<<endl;
+        cout<<endl;
+        cout<<"Nonce: "<<nonce<<endl;
+        cout<<endl;
+        for(auto i = 0; i < array.size(); i++){
+            cout<<"{";
+            cout<< array[i].emisor + ", ";
+            cout<< array[i].receptor + ", ";
+            cout<< to_string(array[i].monto) + ", ";
+            cout<< to_string(array[i].dia) + "/";
+            cout<< to_string(array[i].mes) + "/";
+            cout<< to_string(array[i].ahnio);
+            cout<< "}, "<<endl;
+        }
+        cout<<endl;
+        cout<< "Anterior: "<< anterior <<endl;
+        cout<<endl;
+        cout<<"Hash: "<< hash<<endl;
+        cout << endl;
+        cout << "Valido: " << boolalpha << valido << endl;
     }
 
     string get_string(){
