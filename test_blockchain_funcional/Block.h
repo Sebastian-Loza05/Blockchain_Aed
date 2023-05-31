@@ -4,7 +4,7 @@
 #include "tst_Registro.h"
 #include "C_array.h"
 // #include "C:\Users\HP\Desktop\sha256\sha256.h"
-#include "sha256/sha256.h"
+#include "../sha256/sha256.h"
 
 SHA256 sha256;
 
