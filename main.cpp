@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Block.h"
 #include "Blockchain.h"
 // #include "tst_registro.h"
 
@@ -62,6 +63,7 @@ void modificar_registro(Blockchain* blockchain){
         cout<<"Ingrese los datos del registro modificados: "<<endl;
         auto tst = ingresar_registro();
         array[num_array-1] = tst;
+        bloque.setHash(sha256(bloque.get_string()));
         blockchain->modificar(num_bloque, num_array);
     }
 

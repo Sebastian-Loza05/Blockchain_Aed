@@ -77,12 +77,13 @@ public:
             }
             else{
                 blockchain.back().getArray().push_back(registro);
+                blockchain.back().setHash(blockchain.back().get_string());
+                blockchain.back().minar();
             }
         }
         bloque = last_num;
         emisores.insert(nombre, bloque);
         montos_e.push(monto,nombre);
-        blockchain.back().minar();
     }
 
     void modificar(int num_bloque, int num_reg){
